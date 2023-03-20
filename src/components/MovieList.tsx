@@ -4,12 +4,12 @@ interface Props {
   movies: [];
 }
 
-const MovieList = ({ gifs }: Props) => {
+const MovieList = ({ movies }: Props) => {
   return (
     <div className="MovieList">
       <h2>Results</h2>
       <ul>
-        {gifs.map((item) => (
+        {movies.map((item) => (
           <Result key={item.id + Math.random()} gif={item} />
         ))}
       </ul>
