@@ -1,14 +1,23 @@
-
-
+// interface Genre {
+//     genreId: number
+// }
 
 export default interface Movie {
     //image
     backdrop_pat: string,
     poster_path: string,
+    overview: string,
+    release_date: Date,
 
     //movielist
     id: number,
     title: string,
+    adult: boolean,
+    vote_average: number,
+    vote_count: number,
+    popularity: number,
+
+    //genre_ids: Genre[]
     //vote_average: number,
 
     //details
@@ -20,5 +29,4 @@ export default interface Movie {
     // popularity: number,
     // release_date: Date,
     // video: boolean,
-    // vote_count: number
 }
