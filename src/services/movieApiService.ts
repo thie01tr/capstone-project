@@ -1,5 +1,4 @@
 import axios from "axios";
-import { MovieDetailResponse } from "../model/MovieDetailResponse";
 import Movie from "../model/Movie";
 import MovieResponse from "../model/MovieResponse";
 
