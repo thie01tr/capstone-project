@@ -1,4 +1,5 @@
 import axios from "axios";
+import Genre from "../model/Genre";
 import Movie from "../model/Movie";
 import MovieResponse from "../model/MovieResponse";
 
@@ -35,6 +36,16 @@ export const getTopRatedMovies = (): Promise<MovieResponse> => {
 export const getMovieById = (id: string): Promise<Movie> => {
   return axios
     .get(`https://api.themoviedb.org/3/movie/${id}`, {
+      params: {
+        api_key: apiKey,
+      },
+    })
+    .then((res) => res.data);
+};
+
+export const getGenreLists = (): Promise<Genre> => {
+  return axios
+    .get(`https://api.themoviedb.org/3/genre/movie/list`, {
       params: {
         api_key: apiKey,
       },
