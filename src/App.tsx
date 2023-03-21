@@ -1,5 +1,6 @@
 import "./App.css";
 import MovieList from "./components/MovieList";
+import Header from './components/Header';
 import {
   BrowserRouter as Router,
   Navigate,
@@ -13,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <ToolBar />
+        <Header/>
         <Routes>
           <Route path="/" element={<MovieList />} />
           <Route path="/favorite" element={<Favorites />} />
