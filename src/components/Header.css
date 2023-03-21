@@ -1,0 +1,26 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 12px 16px 0;
+  }
+
+.Header HomeIcon{
+    width: 5%;
+}
+
+.Header .Title{
+    width: 10%;
+}
+
+.Header FilterListIcon{
+    width: 5%;
+}
+
+.Header FavoriteIcon{
+    width: 5%;
+}
+
+.Header .Header__attribution{
+    width: 75%;
+}

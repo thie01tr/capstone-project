@@ -11,10 +11,10 @@ const MovieListItem = ({ movie }: Props) => {
   return (
     <div className='MovieListItem'>
       <li className="Result">
-            <Link to={`/gif/${movie.id}`}>
+            {/* <Link to={`/gif/${movie.id}`}> */}
               <h3>{movie.title}</h3>
               {/* <img src={`https://image.tmdb.org/t/p/original/`+movie.poster_path} alt="the GIF" /> */}
-            </Link>
+            {/* </Link> */}
             {/* <p className=".link">
               <a href={movie.} target="_blank" rel="noreferrer">
                 Link to Giphy
