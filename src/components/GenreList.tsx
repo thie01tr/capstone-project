@@ -1,27 +1,41 @@
-import { FormEvent, useEffect, useState } from 'react';
+//import './GenreList.css'
+import { useEffect, useState } from 'react';
 import Genre from '../model/Genre';
 import { getGenreLists } from '../services/movieApiService';
-//import './GenreList.css'
-
-interface Props
-{
-    genre: Genre[]
-}
 
 const GenreList = () => {
     const [genre, setGenre] =  useState<Genre[]>([]);
+                             //useState<Movie[]>([]);
     useEffect(() => {
-        getGenreLists().then((res) => setGenre(genre));
+        const genrelist = getGenreLists().then((res) => setGenre(res.data));
+        console.log("genrelist =>", genrelist);
+        console.log("genre response =>", genre);
       }, []);
-    
-      let handleGenreChange = (e: FormEvent) => {
-        e.preventDefault();
-        setGenre(e.target.)
-      }
 
+      //{
+            
+            //console.log("GenreList => ", res);
+            //console.log("GenreList results => ", res.results); 
+            
+            //console.log("Genre  => ", genre); 
+        //}
+        //);
+      
   return (
     <div className='GenreList'>
-        <DropDown
+       <div>
+        <>
+            {console.log("genre => ", genre)}
+        </>
+        {genre ? "array exists" : "array empty"}
+          <select>
+            {genre ? genre.map((genre) => {
+                console.log("download list", genre)
+                return <option key={genre.id} value={genre.id}>{genre.name}</option>
+            })
+            :""};
+          </select>
+        </div>
     </div>
   )
 };

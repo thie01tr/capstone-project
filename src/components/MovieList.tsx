@@ -11,12 +11,15 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import GenreList from "./GenreList";
+
 const MovieList = () => {
   const [movie, setMovie] = useState<Movie[]>([]);
 
   useEffect(() => {
     getTopRatedMovies().then((res) => setMovie(res.results));
   }, []);
+
   const [filter, setFilterCriteria] = useState("rating");
 
   const handleChange = (
@@ -27,6 +30,7 @@ const MovieList = () => {
   };
 
   return (
+ 
     <div className="MovieList">
       <h2>Top Rated Movies</h2>
       <Box
@@ -57,6 +61,8 @@ const MovieList = () => {
               label="Language"
             />
           </RadioGroup>
+          <FormLabel id="demo-row-genre-dropdown-list">Genre</FormLabel>
+          <GenreList />
         </FormControl>
       </Box>
 

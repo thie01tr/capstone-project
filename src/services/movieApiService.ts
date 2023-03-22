@@ -1,5 +1,5 @@
 import axios from "axios";
-import Genre from "../model/Genre";
+import GenreResponse from "../model/GenreResponse";
 import Movie from "../model/Movie";
 import MovieResponse from "../model/MovieResponse";
 
@@ -10,7 +10,7 @@ const apiKey: string = process.env.REACT_APP_MOVIE_API_KEY || "";
 
 
 export const getTopRatedMovies = (): Promise<MovieResponse> => {
-    console.log("apikey = " , apiKey);
+    console.log("getTopRatedMovies - apikey = " , apiKey);
   return axios
     .get("https://api.themoviedb.org/3/movie/top_rated", {
       params: {
@@ -43,12 +43,16 @@ export const getMovieById = (id: string): Promise<Movie> => {
     .then((res) => res.data);
 };
 
-export const getGenreLists = (): Promise<Genre> => {
+export const getGenreLists = (): Promise<GenreResponse> => {
+  console.log("getGenreLists - apikey = " , apiKey);
   return axios
     .get(`https://api.themoviedb.org/3/genre/movie/list`, {
       params: {
         api_key: apiKey,
       },
     })
-    .then((res) => res.data);
+    .then((res) => {
+      console.log("getGenreLists api call" , res.data)
+      return res.data
+    });
 };
