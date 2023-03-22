@@ -52,7 +52,7 @@ export const getGenreLists = (): Promise<GenreResponse> => {
       },
     })
     .then((res) => {
-      console.log("getGenreLists api call" , res.data)
+      console.log("getGenreLists api call" , res)
       return res.data
     });
 };

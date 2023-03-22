@@ -1,5 +1,5 @@
 import Genre from "./Genre"
 
 export default interface GenreResponse {
-    data:Genre[]
+    genres:Genre[]
 }
