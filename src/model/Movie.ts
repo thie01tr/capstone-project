@@ -1,7 +1,3 @@
-// interface Genre {
-//     genreId: number
-// }
-
 export default interface Movie {
     //image
     backdrop_pat: string,

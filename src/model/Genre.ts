@@ -1,5 +1,4 @@
-export default interface Genre
-{
+export default interface Genre {
     id : number,
     name: string
 }
