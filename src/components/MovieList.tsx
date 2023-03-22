@@ -13,6 +13,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import GenreList from "./GenreList";
 
+import Container from "@mui/material/Container";
 const MovieList = () => {
   const [movie, setMovie] = useState<Movie[]>([]);
 
@@ -30,7 +31,6 @@ const MovieList = () => {
   };
 
   return (
- 
     <div className="MovieList">
       <h2>Top Rated Movies</h2>
       <Box
@@ -66,11 +66,15 @@ const MovieList = () => {
         </FormControl>
       </Box>
 
-      <Grid container spacing={2}>
-        {movie.map((item) => (
-          <MovieListItem key={item.id + Math.random()} movie={item} />
-        ))}
-      </Grid>
+      <Container>
+        <Box sx={{ bgcolor: "#e8eaebc2" }}>
+          <Grid container spacing={2} sx={{ justifyContent: "space-evenly" }}>
+            {movie.map((item) => (
+              <MovieListItem key={item.id + Math.random()} movie={item} />
+            ))}
+          </Grid>
+        </Box>
+      </Container>
     </div>
   );
 };

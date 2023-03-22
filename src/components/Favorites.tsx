@@ -1,7 +1,24 @@
 import "./Favorites.css";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Unstable_Grid2";
+import { useContext } from "react";
+import { MoviesContext } from "../context/MoviesContext";
+import MovieListItem from "./MovieListItem";
 
 const Favorites = () => {
-  return <div className="Favorites">Favorites works</div>;
+  const { removeWatchList, watchList } = useContext(MoviesContext);
+  return (
+    <Container>
+      <Box sx={{ bgcolor: "#e8eaebc2" }}>
+        <Grid container spacing={2} sx={{ justifyContent: "space-evenly" }}>
+          {watchList.map((item) => (
+            <MovieListItem key={item.id + Math.random()} movie={item} />
+          ))}
+        </Grid>
+      </Box>
+    </Container>
+  );
 };
 
 export default Favorites;
