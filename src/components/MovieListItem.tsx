@@ -18,6 +18,7 @@ import { MoviesContext } from "../context/MoviesContext";
 import { pink } from "@mui/material/colors";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import { Link } from "react-router-dom";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -58,18 +59,6 @@ const MovieListItem = ({ movie }: Props) => {
   };
   return (
     <div className="MovieListItem">
-      {/* <Link to={`/gif/${movie.id}`}>
-          <h3>{movie.title}</h3>
-          <img
-            src={`https://image.tmdb.org/t/p/original/` + movie.poster_path}
-            alt="the GIF"
-          />
-        </Link> */}
-      {/* <p className=".link">
-              <a href={movie.} target="_blank" rel="noreferrer">
-                Link to Giphy
-              </a>
-            </p> */}
       <Grid xs={8} md={8} lg={12}>
         <Card sx={{ display: "flex" }}>
           <Box
@@ -127,12 +116,14 @@ const MovieListItem = ({ movie }: Props) => {
               </Tooltip>
             </Box>
           </Box>
-          <CardMedia
-            component="img"
-            sx={{ width: 200 }}
-            image={`https://image.tmdb.org/t/p/original/` + movie.poster_path}
-            alt="Live from space album cover"
-          />
+          <Link to={`movie/${movie.id}`}>
+            <CardMedia
+              component="img"
+              sx={{ width: 200 }}
+              image={`https://image.tmdb.org/t/p/original/` + movie.poster_path}
+              alt="Live from space album cover"
+            />
+          </Link>
         </Card>
       </Grid>
       <Snackbar

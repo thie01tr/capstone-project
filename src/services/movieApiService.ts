@@ -8,9 +8,8 @@ import MovieResponse from "../model/MovieResponse";
 
 const apiKey: string = process.env.REACT_APP_MOVIE_API_KEY || "";
 
-
 export const getTopRatedMovies = (): Promise<MovieResponse> => {
-    console.log("getTopRatedMovies - apikey = " , apiKey);
+  console.log("getTopRatedMovies - apikey = ", apiKey);
   return axios
     .get("https://api.themoviedb.org/3/movie/top_rated", {
       params: {
@@ -44,7 +43,7 @@ export const getMovieById = (id: string): Promise<Movie> => {
 };
 
 export const getGenreLists = (): Promise<GenreResponse> => {
-  console.log("getGenreLists - apikey = " , apiKey);
+  console.log("getGenreLists - apikey = ", apiKey);
   return axios
     .get(`https://api.themoviedb.org/3/genre/movie/list`, {
       params: {
@@ -52,7 +51,7 @@ export const getGenreLists = (): Promise<GenreResponse> => {
       },
     })
     .then((res) => {
-      console.log("getGenreLists api call" , res)
-      return res.data
+      console.log("getGenreLists api call", res);
+      return res.data;
     });
 };
