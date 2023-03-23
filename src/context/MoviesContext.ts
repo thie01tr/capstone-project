@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import Movie from "../model/Movie";
+import Genre from "../model/Genre";
 
 interface MoviesContextModel {
   isFilter: boolean;
@@ -9,19 +10,23 @@ interface MoviesContextModel {
   isAdult: boolean;
   rating: number;
   originalLan: string;
+  genres: Genre[];
 
   // watchlist
   watchList: Movie[];
   addToWatchLists: (movie: Movie) => void;
   removeWatchList: (id: number) => void;
   isWatchList: (id: number) => boolean;
+  storeGenres: (genres: Genre[]) => void;
   toggleIsFilterPanelVis: () => void;
+
 }
 
 const defaultValues: MoviesContextModel = {
   watchList: [],
   isFilter: false,
   isFilterPanelVis: false,
+  genres: [],
 
   //search Terms
   isAdult: false,
@@ -31,6 +36,7 @@ const defaultValues: MoviesContextModel = {
   addToWatchLists: (movie: Movie) => {},
   removeWatchList: (id: number) => {},
   isWatchList: (id: number) => false,
+  storeGenres: () => {},
   toggleIsFilterPanelVis: () => {}
 };
 
