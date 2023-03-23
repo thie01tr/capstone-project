@@ -8,12 +8,13 @@ import MovieResponse from "../model/MovieResponse";
 
 const apiKey: string = process.env.REACT_APP_MOVIE_API_KEY || "";
 
-export const getTopRatedMovies = (): Promise<MovieResponse> => {
+export const getTopRatedMovies = (page:number): Promise<MovieResponse> => {
   console.log("getTopRatedMovies - apikey = ", apiKey);
   return axios
     .get("https://api.themoviedb.org/3/movie/top_rated", {
       params: {
         api_key: apiKey,
+        page:page
       },
     })
     .then((res) => res.data);

@@ -1,21 +1,47 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import Movie from "../model/Movie";
 import { MoviesContext } from "./MoviesContext";
 import Genre from "../model/Genre";
+import { getTopRatedMovies } from "../services/movieApiService";
 
 interface Props {
   children: ReactNode;
 }
 
 const MoviesContextProvider = ({ children }: Props) => {
-  const [watchList, setWatchList] = useState<Movie[]>([]);
-  const [isFilter, setIsFilter] = useState(false);
+  //Filter
   const [isFilterPanelVis, setIsFilterPaneVis] = useState(false);
+  const [isAdultFiltered, setIsAdultFiltered] = useState(false);
+  const [isRatingFiltered, setIsRatingFiltered] = useState(false);
+  const [isGenreFiltered, setIsGenreFiltered] = useState(false);
+  const [isFilter, setIsFilter] = useState(false);
 
   const [isAdult, setIsAdult] = useState(false);
-  const [rating, setRating] = useState(10);
-  const [originalLan, setOriginalLan] = useState("ENG");
+  const [rating, setRating] = useState(0);
   const [genres, setGenres] = useState<Genre[]>([]);
+  const [watchList, setWatchList] = useState<Movie[]>([]);
+  const toggleIsFilterPanelVis = ():void => {
+    setIsFilterPaneVis((prev) => !prev);
+  };
+  const toggleIsAdultFiltered = ():void => {
+    setIsAdultFiltered((prev) => !prev);
+  };
+  const toggleIsRatingFiltered = ():void => {
+    setIsRatingFiltered((prev) => !prev);
+  };
+  const toggleIsGenreFiltered = ():void => {
+    setIsGenreFiltered((prev) => !prev);
+  };
+
+  const toggleIsAdult = ():void => {
+    setIsAdult((prev) => !prev);
+  };
+
+
+  
+  
+
+  
 
   const addToWatchLists = (movie: Movie) => {
     setWatchList((prev) => [...prev, movie]);
@@ -32,26 +58,53 @@ const MoviesContextProvider = ({ children }: Props) => {
     setGenres(genres);
   };
 
-  const toggleIsFilterPanelVis = ():void => {
-    setIsFilterPaneVis((prev) => !prev);
-  };
+  const [topMoviesList, setTopMoviesList] = useState<Movie[]>([]);
+
+  //onMount only need to do once
+  useEffect(()=>{
+    for(let i = 1; i < 546; i+=200){
+      getTopRatedMovies(i).then((res) => setTopMoviesList((prev)=>[...prev,...res.results]));
+    }
+  },[]);
+
+
+  useEffect(()=>{
+    setIsFilter(isAdultFiltered||isRatingFiltered||isGenreFiltered)
+  },[isAdultFiltered,isRatingFiltered,isGenreFiltered]);
+  
 
 
   return (
     <MoviesContext.Provider
       value={{
-        watchList,
+        //filter
         isFilter,
         isFilterPanelVis,
+        
+        isAdultFiltered,
+        isRatingFiltered,
+        isGenreFiltered,
+
         isAdult,
         rating,
-        originalLan,
         genres,
+
+        toggleIsFilterPanelVis,
+        toggleIsAdult,
+        toggleIsAdultFiltered,
+        toggleIsRatingFiltered,
+        toggleIsGenreFiltered,
+
+        setRating,
+
+        watchList,
+        topMoviesList,
+        
         addToWatchLists,
         removeWatchList,
         isWatchList,
         storeGenres,
-        toggleIsFilterPanelVis,
+        
       }}
     >
       {children}

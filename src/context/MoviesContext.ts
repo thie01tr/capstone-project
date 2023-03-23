@@ -3,41 +3,68 @@ import Movie from "../model/Movie";
 import Genre from "../model/Genre";
 
 interface MoviesContextModel {
+    //Filter
   isFilter: boolean;
   isFilterPanelVis: boolean;
-
-  //search Terms
+  isAdultFiltered: boolean;
+  isRatingFiltered: boolean;
+  isGenreFiltered: boolean;
+  
   isAdult: boolean;
   rating: number;
-  originalLan: string;
   genres: Genre[];
+  
+  toggleIsFilterPanelVis: () => void;
+  toggleIsAdultFiltered: () => void;
+  toggleIsRatingFiltered: () => void;
+  toggleIsGenreFiltered: () => void;
+  
+  toggleIsAdult: () => void;
+  setRating:(value:number) => void;
+  
+  
 
   // watchlist
+  topMoviesList: Movie[];
+  //filteredMoviesList: Movie[];
+
   watchList: Movie[];
   addToWatchLists: (movie: Movie) => void;
   removeWatchList: (id: number) => void;
   isWatchList: (id: number) => boolean;
   storeGenres: (genres: Genre[]) => void;
-  toggleIsFilterPanelVis: () => void;
+  
 
 }
 
 const defaultValues: MoviesContextModel = {
-  watchList: [],
+  //filter
   isFilter: false,
   isFilterPanelVis: false,
-  genres: [],
+  isAdultFiltered: false,
+  isRatingFiltered: false,
+  isGenreFiltered: false,
 
-  //search Terms
   isAdult: false,
-  rating: 10,
-  originalLan: "ENG",
+  rating: 0,
+  genres: [],
+  
+  toggleIsFilterPanelVis: () => {},
+  toggleIsAdultFiltered: () => {},
+  toggleIsRatingFiltered: () => {},
+  toggleIsGenreFiltered: () => {},
+  
+  toggleIsAdult: () => {},
+  setRating:(value:number) => {},
 
+  topMoviesList: [],
+  //filteredMoviesList: [],
+  watchList: [],
   addToWatchLists: (movie: Movie) => {},
   removeWatchList: (id: number) => {},
   isWatchList: (id: number) => false,
   storeGenres: () => {},
-  toggleIsFilterPanelVis: () => {}
+  
 };
 
 export const MoviesContext = createContext<MoviesContextModel>(defaultValues);

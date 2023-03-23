@@ -10,27 +10,92 @@ import GenreList from "./GenreList";
 import Container from "@mui/material/Container";
 import Checkbox from '@mui/material/Checkbox';
 import Typography from "@mui/material/Typography";
+import Switch from '@mui/material/Switch';
+import { MoviesContext } from "../context/MoviesContext";
+import { useContext,useEffect, useState } from "react";
+import Rating from '@mui/material/Rating';
+import Slider from '@mui/material/Slider';
 
 const FilterPanel = () =>{
-  const isAdultLabel = {inputProps:{ 'aria-label': 'Show Adult Rated' }};
+    const {
+      //isAdult
+      isAdult,
+      toggleIsAdult,
+      isAdultFiltered,
+      toggleIsAdultFiltered,
 
+      //Rating
+
+      rating,
+      setRating,
+      isRatingFiltered,
+      toggleIsRatingFiltered,
+      //Genre
+    
+
+  
+  } = useContext(MoviesContext);
+  console.log(isAdult);
   return(
-    // <Grid container spacing={3}>
-      // {/* isAdult */}
-      <Grid container spacing={3}>
-        <Grid container xs={2}>
-          <Checkbox {...isAdultLabel}></Checkbox>
-        </Grid>
-        <Grid container xs={8}>
-        <Typography component="div" variant="h6">
+    //isAdult
+    <Box sx={{ flexGrow: 1 }}>
+    <Grid container spacing={3} minHeight={160}>
+      <Grid xs display="flex" justifyContent="center" alignItems="center">
+        <Checkbox 
+        checked={isAdultFiltered} 
+        onChange={toggleIsAdultFiltered}
+        inputProps={{ 'aria-label': 'isAdultFiltered' }}></Checkbox>
+      </Grid>
+      <Grid display="flex" justifyContent="left" alignItems="center">
+      <Typography component="div" variant="h6">
         Show Adult Rated
               </Typography>
-        </Grid>
-        <Grid container></Grid>
       </Grid>
+      <Grid xs display="flex" justifyContent="center" alignItems="center">
+      <Switch
+      checked={isAdult}
+      onChange={toggleIsAdult}
+      inputProps={{ 'aria-label': 'isAdult' }}
+    />
+      </Grid>
+    </Grid>
 
-      // {/* rating */}
-      // <Grid  container spacing={3}></Grid>
+    {/* rating */}
+    <Grid container spacing={2} minHeight={160}>
+      <Grid xs display="flex" justifyContent="center" alignItems="center">
+        <Checkbox 
+        checked={isRatingFiltered} 
+        onChange={toggleIsRatingFiltered}
+        inputProps={{ 'aria-label': 'isRatingFiltered' }}></Checkbox>
+      </Grid>
+      <Grid display="flex" justifyContent="center" alignItems="center">
+      <Typography component="div" variant="h6">
+        Rating
+              </Typography>
+      </Grid>
+      <Grid xs display="flex" justifyContent="center" alignItems="center">
+        {/* <Rating
+           name="rating"
+           max={10}
+           value={rating}
+           onChange={(event, newValue) => {
+             setRating(newValue?newValue:0);
+           }}
+        /> */}
+        <Slider
+        value={rating}
+        onChange={(_, value) => setRating(value as number)}
+        aria-label="rating"
+        defaultValue={0}
+        step={0.1}
+        marks
+        min={0}
+        max={10}
+        valueLabelDisplay="auto"
+      />
+      </Grid>
+    </Grid>
+  </Box>
 
       // {/* genre */}
       //<Grid  container spacing={3}></Grid>
@@ -38,7 +103,7 @@ const FilterPanel = () =>{
 
 
 
-    // </Grid>
+    
 
   );
 };
