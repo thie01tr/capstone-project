@@ -20,28 +20,22 @@ const MoviesContextProvider = ({ children }: Props) => {
   const [rating, setRating] = useState(0);
   const [genres, setGenres] = useState<Genre[]>([]);
   const [watchList, setWatchList] = useState<Movie[]>([]);
-  const toggleIsFilterPanelVis = ():void => {
+  const toggleIsFilterPanelVis = (): void => {
     setIsFilterPaneVis((prev) => !prev);
   };
-  const toggleIsAdultFiltered = ():void => {
+  const toggleIsAdultFiltered = (): void => {
     setIsAdultFiltered((prev) => !prev);
   };
-  const toggleIsRatingFiltered = ():void => {
+  const toggleIsRatingFiltered = (): void => {
     setIsRatingFiltered((prev) => !prev);
   };
-  const toggleIsGenreFiltered = ():void => {
+  const toggleIsGenreFiltered = (): void => {
     setIsGenreFiltered((prev) => !prev);
   };
 
-  const toggleIsAdult = ():void => {
+  const toggleIsAdult = (): void => {
     setIsAdult((prev) => !prev);
   };
-
-
-  
-  
-
-  
 
   const addToWatchLists = (movie: Movie) => {
     setWatchList((prev) => [...prev, movie]);
@@ -57,22 +51,19 @@ const MoviesContextProvider = ({ children }: Props) => {
   const storeGenres = (genres: Genre[]) => {
     setGenres(genres);
   };
-
+  const setMoviesList = (movies: Movie[]) => {
+    setTopMoviesList(movies);
+  };
   const [topMoviesList, setTopMoviesList] = useState<Movie[]>([]);
 
   //onMount only need to do once
-  useEffect(()=>{
-    for(let i = 1; i < 546; i+=200){
-      getTopRatedMovies(i).then((res) => setTopMoviesList((prev)=>[...prev,...res.results]));
-    }
-  },[]);
+  useEffect(() => {
+    getTopRatedMovies().then((res) => setTopMoviesList(res.results));
+  }, []);
 
-
-  useEffect(()=>{
-    setIsFilter(isAdultFiltered||isRatingFiltered||isGenreFiltered)
-  },[isAdultFiltered,isRatingFiltered,isGenreFiltered]);
-  
-
+  useEffect(() => {
+    setIsFilter(isAdultFiltered || isRatingFiltered || isGenreFiltered);
+  }, [isAdultFiltered, isRatingFiltered, isGenreFiltered]);
 
   return (
     <MoviesContext.Provider
@@ -80,7 +71,7 @@ const MoviesContextProvider = ({ children }: Props) => {
         //filter
         isFilter,
         isFilterPanelVis,
-        
+
         isAdultFiltered,
         isRatingFiltered,
         isGenreFiltered,
@@ -99,12 +90,11 @@ const MoviesContextProvider = ({ children }: Props) => {
 
         watchList,
         topMoviesList,
-        
+        setMoviesList,
         addToWatchLists,
         removeWatchList,
         isWatchList,
         storeGenres,
-        
       }}
     >
       {children}
