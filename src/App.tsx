@@ -1,6 +1,6 @@
 import "./App.css";
 import MovieList from "./components/MovieList";
-import Header from './components/Header';
+import Header from "./components/Header";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -20,22 +20,21 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import GenreList from "./components/GenreList";
 import FilterPanel from "./components/FilterPanel";
-import { useContext,useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MoviesContext } from "./context/MoviesContext";
 
-
 function App() {
-  const {isFilterPanelVis} = useContext(MoviesContext);
-  const [movielistSize,setMovielistSize] = useState(12);
+  const { isFilterPanelVis } = useContext(MoviesContext);
+  const [movielistSize, setMovielistSize] = useState(12);
 
-  useEffect(()=>{
-    setMovielistSize(isFilterPanelVis?8:12)
-  },[isFilterPanelVis])
+  useEffect(() => {
+    setMovielistSize(isFilterPanelVis ? 8 : 12);
+  }, [isFilterPanelVis]);
 
   return (
     <div className="App">
       <Router>
-        <Header/>
+        <Header />
         <Grid container spacing={2} xs={12}>
           <Grid container spacing={2} xs={movielistSize}>
             <Routes>
@@ -45,18 +44,14 @@ function App() {
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </Grid>
-          {isFilterPanelVis ? (
+          {/* {isFilterPanelVis ? (
           <Grid container spacing={2} xs={4}>
             <FilterPanel/>
           </Grid>)
           :
-          (<></>)}
-
-
+          (<></>)} */}
         </Grid>
-        
       </Router>
-      
     </div>
   );
 }

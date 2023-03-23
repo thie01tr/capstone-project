@@ -8,13 +8,12 @@ import MovieResponse from "../model/MovieResponse";
 
 const apiKey: string = process.env.REACT_APP_MOVIE_API_KEY || "";
 
-export const getTopRatedMovies = (page:number): Promise<MovieResponse> => {
+export const getTopRatedMovies = (): Promise<MovieResponse> => {
   console.log("getTopRatedMovies - apikey = ", apiKey);
   return axios
     .get("https://api.themoviedb.org/3/movie/top_rated", {
       params: {
         api_key: apiKey,
-        page:page
       },
     })
     .then((res) => res.data);
@@ -55,4 +54,25 @@ export const getGenreLists = (): Promise<GenreResponse> => {
       console.log("getGenreLists api call", res);
       return res.data;
     });
+};
+
+export const getFilteredMovie = (
+  genreId?: number,
+  lang?: string,
+  isAdult?: boolean,
+  page?: number
+): Promise<MovieResponse> => {
+  return axios
+    .get(`https://api.themoviedb.org/3/discover/movie`, {
+      params: {
+        api_key: apiKey,
+        with_genres: genreId,
+        with_original_language: lang,
+        include_adult: isAdult,
+        page: page,
+        certification: isAdult ? "R" : "",
+        certification_country: "US",
+      },
+    })
+    .then((res) => res.data);
 };
