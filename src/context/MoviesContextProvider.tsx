@@ -26,6 +26,11 @@ const MoviesContextProvider = ({ children }: Props) => {
     return watchList.some((movie) => movie.id === id);
   };
 
+  const toggleIsFilterPanelVis = ():void => {
+    setIsFilterPaneVis((prev) => !prev);
+  };
+
+
   return (
     <MoviesContext.Provider
       value={{
@@ -38,6 +43,7 @@ const MoviesContextProvider = ({ children }: Props) => {
         addToWatchLists,
         removeWatchList,
         isWatchList,
+        toggleIsFilterPanelVis,
       }}
     >
       {children}

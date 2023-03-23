@@ -33,45 +33,12 @@ const MovieList = () => {
   return (
     <div className="MovieList">
       <h2>Top Rated Movies</h2>
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 1 },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField id="outlined-basic" label="Search" variant="outlined" />
-        <FormControl>
-          <FormLabel id="demo-row-radio-buttons-group-label">Filter</FormLabel>
-          <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-          >
-            <FormControlLabel
-              value="Rating"
-              control={<Radio />}
-              label="Rating"
-            />
-            <FormControlLabel value="Age" control={<Radio />} label="Age" />
-            <FormControlLabel
-              value="Language"
-              control={<Radio />}
-              label="Language"
-            />
-          </RadioGroup>
-          <FormLabel id="demo-row-genre-dropdown-list">Genre</FormLabel>
-          <GenreList />
-        </FormControl>
-      </Box>
-
       <Container>
         <Box sx={{ bgcolor: "#e8eaebc2" }}>
           <Grid container spacing={2} sx={{ justifyContent: "space-evenly" }}>
-            {movie.map((item) => (
-              <MovieListItem key={item.id + Math.random()} movie={item} />
-            ))}
+          {movie.map((item) => (
+            <MovieListItem key={item.id + Math.random()} movie={item} />
+          ))}
           </Grid>
         </Box>
       </Container>

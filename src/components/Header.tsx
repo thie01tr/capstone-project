@@ -5,13 +5,16 @@ import Divider from "@mui/material/Divider";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
+import {useContext} from 'react'
+import { MoviesContext } from "../context/MoviesContext";
 
 const Header = () => {
-  return (
+  const {toggleIsFilterPanelVis} = useContext(MoviesContext);
+return (
     <header className="Header">
-      {/* Icon     |     Title    |    Buttons */}
+        {/* Icon     |     Title    |    Buttons */}
 
-      <Box
+        <Box
         sx={{
           display: "flex",
           alignItems: "center",
@@ -34,16 +37,18 @@ const Header = () => {
         <Divider orientation="vertical" variant="middle" flexItem />
         <h1 className="Title">Movie APP</h1>
         <Divider orientation="vertical" variant="middle" flexItem />
-
+        
         <p className="Header__attribution">
-          Powered By <a href="https://api.themoviedb.org/">TheMovieDB</a>
+        Powered By <a href="https://api.themoviedb.org/">TheMovieDB</a>
         </p>
         <Divider orientation="vertical" variant="middle" flexItem />
         <Link to={"/favorite"}>
-          <FavoriteIcon />
+        <FavoriteIcon />
         </Link>
         <Divider orientation="vertical" variant="middle" flexItem />
-        <FilterListIcon />
+        <div onClick={toggleIsFilterPanelVis}>
+        <FilterListIcon/>
+        </div>
       </Box>
     </header>
   );
