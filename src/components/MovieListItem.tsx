@@ -12,7 +12,7 @@ import "./MovieListItem.css";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Tooltip } from "@mui/material";
+import { Chip, Stack, Tooltip } from "@mui/material";
 import { useContext } from "react";
 import { MoviesContext } from "../context/MoviesContext";
 import { pink } from "@mui/material/colors";
@@ -31,8 +31,16 @@ interface Props {
 }
 
 const MovieListItem = ({ movie }: Props) => {
-  const { addToWatchLists, removeWatchList, isWatchList } =
+  const { addToWatchLists, removeWatchList, isWatchList, genres } =
     useContext(MoviesContext);
+
+  console.log(genres);
+  const genresList = movie.genre_ids.map((movieGId) => {
+    console.log(genres.find((genre) => genre.id === movieGId));
+    return genres.find((genre) => genre.id === movieGId)?.name;
+  });
+  console.log(genresList);
+
   const [openAddSnackBar, setOpenAddSnackBar] = React.useState(false);
   const [openRemoveSnackBar, setRemoveSnackBar] = React.useState(false);
 
@@ -70,9 +78,29 @@ const MovieListItem = ({ movie }: Props) => {
             }}
           >
             <CardContent>
-              <Typography component="div" variant="h6">
-                {movie.title}
-              </Typography>
+              <Link
+                to={`movie/${movie.id}`}
+                style={{ textDecoration: "unset", color: "unset" }}
+              >
+                <Typography component="div" variant="h6">
+                  {movie.title}
+                </Typography>
+              </Link>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "space-around",
+                  flexDirection: "row",
+                }}
+              >
+                {genresList.map((generName) => {
+                  return <Chip label={generName} size="small" />;
+                })}
+
+                {/* <Chip label="Action" size="small" /> */}
+              </Box>
+
               <Typography
                 variant="subtitle1"
                 color="text.secondary"

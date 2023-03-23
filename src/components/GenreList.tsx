@@ -1,18 +1,20 @@
 //import './GenreList.css'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Genre from "../model/Genre";
 import { getGenreLists } from "../services/movieApiService";
-import Select from '@mui/material/Select';
+import Select from "@mui/material/Select";
 //import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
+import FormControl from "@mui/material/FormControl";
+import { MoviesContext } from "../context/MoviesContext";
 
 const GenreList = () => {
   const [genre, setGenre] = useState<Genre[]>([]);
+  const { storeGenres } = useContext(MoviesContext);
   //useState<Movie[]>([]);
   useEffect(() => {
     getGenreLists().then((res) => {
       setGenre(res.genres);
-      console.log("res.data", res.genres);
+      storeGenres(res.genres);
     });
   }, []);
 
@@ -23,24 +25,26 @@ const GenreList = () => {
           {/* <InputLabel shrink htmlFor="select-multiple-native">
             Genre
           </InputLabel> */}
-          <Select multiple
-          native
-          inputProps={{
-            id: 'select-multiple-native',
-          }}>
-          {genre
-            ? genre.map((genre) => {
-                console.log("download list", genre);
-                return (
-                  <option key={genre.id} value={genre.id}>
-                    {genre.name}
-                  </option>
-                );
-              })
-            : ""}
-          ;
-        </Select>
-      </FormControl>
+          <Select
+            multiple
+            native
+            inputProps={{
+              id: "select-multiple-native",
+            }}
+          >
+            {genre
+              ? genre.map((genre) => {
+                  console.log("download list", genre);
+                  return (
+                    <option key={genre.id} value={genre.id}>
+                      {genre.name}
+                    </option>
+                  );
+                })
+              : ""}
+            ;
+          </Select>
+        </FormControl>
       </div>
     </div>
   );

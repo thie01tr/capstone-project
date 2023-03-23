@@ -11,7 +11,7 @@ import Movie from "../model/Movie";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Alert, Container, Tooltip } from "@mui/material";
+import { Alert, Chip, Container, Stack, Tooltip } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { MoviesContext } from "../context/MoviesContext";
 import { pink } from "@mui/material/colors";
@@ -73,12 +73,31 @@ const MovieDetail = () => {
                     <Typography component="div" variant="h6">
                       {movie.title}
                     </Typography>
+                    <Stack direction="row" spacing={1}>
+                      {movie.genres?.map((genre) => (
+                        <Chip label={genre.name} size="small" key={genre.id} />
+                      ))}
+                    </Stack>
                     <Typography
                       variant="subtitle1"
                       color="text.secondary"
                       component="div"
                     >
                       Score {movie.vote_average}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      component="div"
+                    >
+                      Release Date {movie.release_date}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      component="div"
+                    >
+                      Runtime {movie.runtime}
                     </Typography>
                   </CardContent>
                   <Box
