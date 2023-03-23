@@ -18,6 +18,8 @@ interface MoviesContextModel {
   removeWatchList: (id: number) => void;
   isWatchList: (id: number) => boolean;
   storeGenres: (genres: Genre[]) => void;
+  toggleIsFilterPanelVis: () => void;
+
 }
 
 const defaultValues: MoviesContextModel = {
@@ -35,6 +37,7 @@ const defaultValues: MoviesContextModel = {
   removeWatchList: (id: number) => {},
   isWatchList: (id: number) => false,
   storeGenres: () => {},
+  toggleIsFilterPanelVis: () => {}
 };
 
 export const MoviesContext = createContext<MoviesContextModel>(defaultValues);
