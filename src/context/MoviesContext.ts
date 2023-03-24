@@ -31,6 +31,8 @@ interface MoviesContextModel {
   removeWatchList: (id: number) => void;
   isWatchList: (id: number) => boolean;
   storeGenres: (genres: Genre[]) => void;
+  total_pages: number;
+  setTotalPage: (id: number) => void;
 }
 
 const defaultValues: MoviesContextModel = {
@@ -44,7 +46,8 @@ const defaultValues: MoviesContextModel = {
   isAdult: false,
   rating: 0,
   genres: [],
-  //   total_pages:number
+  total_pages: 10,
+  setTotalPage: () => {},
 
   toggleIsFilterPanelVis: () => {},
   toggleIsAdultFiltered: () => {},

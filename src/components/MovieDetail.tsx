@@ -51,7 +51,9 @@ const MovieDetail = () => {
   return (
     <div className="MovieDetail">
       {movie && (
-        <Container sx={{ minHeight: "100vh", paddingTop: "25px" }}>
+        <Container
+          sx={{ minHeight: "100vh", paddingTop: "25px", maxWidth: "100%" }}
+        >
           <Box sx={{ bgcolor: "#e8eaebc2" }}>
             <Grid xs={8} md={8} lg={12}>
               <Card sx={{ display: "flex", justifyContent: "space-evenly" }}>

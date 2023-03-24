@@ -79,7 +79,7 @@ const MovieListItem = ({ movie }: Props) => {
           >
             <CardContent>
               <Link
-                to={`movie/${movie.id}`}
+                to={`/movie/${movie.id}`}
                 style={{ textDecoration: "unset", color: "unset" }}
               >
                 <Typography component="div" variant="h6">
@@ -144,7 +144,7 @@ const MovieListItem = ({ movie }: Props) => {
               </Tooltip>
             </Box>
           </Box>
-          <Link to={`movie/${movie.id}`}>
+          <Link to={`/movie/${movie.id}`}>
             <CardMedia
               component="img"
               sx={{ width: 200 }}

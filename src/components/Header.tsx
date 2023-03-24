@@ -43,6 +43,7 @@ const Header = () => {
     isRatingFiltered,
     toggleIsRatingFiltered,
     setMoviesList,
+    setTotalPage,
     //Genre
   } = useContext(MoviesContext);
   console.log(isAdult);
@@ -71,6 +72,7 @@ const Header = () => {
     console.log(genreId);
     getFilteredMovie(genreId, undefined, isAdult, releaseYear).then((res) => {
       setMoviesList(res.results);
+      setTotalPage(res.total_pages);
     });
   };
   const [selectedGenre, setSelectedGenre] = useState("");

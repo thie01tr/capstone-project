@@ -2,7 +2,10 @@ import { ReactNode, useState, useEffect } from "react";
 import Movie from "../model/Movie";
 import { MoviesContext } from "./MoviesContext";
 import Genre from "../model/Genre";
-import { getTopRatedMovies } from "../services/movieApiService";
+import {
+  getFilteredMovie,
+  getTopRatedMovies,
+} from "../services/movieApiService";
 
 interface Props {
   children: ReactNode;
@@ -56,9 +59,17 @@ const MoviesContextProvider = ({ children }: Props) => {
   };
   const [topMoviesList, setTopMoviesList] = useState<Movie[]>([]);
 
+  const [total_pages, setPages] = useState(10);
+  const setTotalPage = (pages: number) => {
+    setPages(pages);
+  };
+
   //onMount only need to do once
   useEffect(() => {
-    getTopRatedMovies().then((res) => setTopMoviesList(res.results));
+    getFilteredMovie(undefined, undefined, undefined, undefined).then((res) => {
+      setTopMoviesList(res.results);
+      setTotalPage(res.total_pages);
+    });
   }, []);
 
   useEffect(() => {
@@ -95,6 +106,8 @@ const MoviesContextProvider = ({ children }: Props) => {
         removeWatchList,
         isWatchList,
         storeGenres,
+        total_pages,
+        setTotalPage,
       }}
     >
       {children}
