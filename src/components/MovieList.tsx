@@ -77,7 +77,7 @@ const MovieList = () => {
   };
   return (
     <div className="MovieList">
-      <h2>Top Rated Movies: {ml.length}</h2>
+      
       <Container>
         <Box sx={{ bgcolor: "#e8eaebc2", maxWidth: "100%" }}>
           <Grid container spacing={2} sx={{ justifyContent: "space-evenly" }}>
