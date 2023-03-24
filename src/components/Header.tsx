@@ -76,13 +76,12 @@ const Header = () => {
     });
   };
   const [selectedGenre, setSelectedGenre] = useState("");
-  const [releaseYear, setreleaseYear] = useState<number|undefined>();
+  const [releaseYear, setreleaseYear] = useState<number | undefined>();
 
   const handleGenreChange = (event: SelectChangeEvent) => {
     setSelectedGenre(event.target.value);
   };
 
-  
   return (
     <header className="Header">
       {/* Icon     |     Title    |    Buttons */}
@@ -171,14 +170,21 @@ const Header = () => {
         <DialogContent>
           <FormControlLabel
             sx={{ mt: 1 }}
-            control={<TextField
-              id="demo-simple-select-standard"
-              value={releaseYear}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setreleaseYear(event.target.value?parseInt(event.target.value,10):undefined)}
-              label="Release Year"
-              type="number"
-            >
-            </TextField>}
+            control={
+              <TextField
+                id="demo-simple-select-standard"
+                value={releaseYear}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setreleaseYear(
+                    event.target.value
+                      ? parseInt(event.target.value, 10)
+                      : undefined
+                  )
+                }
+                label="Release Year"
+                type="number"
+              ></TextField>
+            }
             label=""
           />
         </DialogContent>

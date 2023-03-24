@@ -73,10 +73,12 @@ const MovieList = () => {
     value: number
   ) => {
     setPage(value);
-    getFilteredMovie(undefined, undefined, isAdult, page).then((res) => {
-      setMoviesList(res.results);
-      setTotalPage(res.total_pages);
-    });
+    getFilteredMovie(undefined, undefined, isAdult, undefined, page).then(
+      (res) => {
+        setMoviesList(res.results);
+        setTotalPage(res.total_pages);
+      }
+    );
   };
   return (
     <div className="MovieList">
