@@ -69,15 +69,18 @@ const Header = () => {
     let genreId = selectedGenre ? +selectedGenre : undefined;
     console.log(selectedGenre);
     console.log(genreId);
-    getFilteredMovie(genreId, undefined, isAdult).then((res) => {
+    getFilteredMovie(genreId, undefined, isAdult, releaseYear).then((res) => {
       setMoviesList(res.results);
     });
   };
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [releaseYear, setreleaseYear] = useState<number|undefined>();
 
   const handleGenreChange = (event: SelectChangeEvent) => {
     setSelectedGenre(event.target.value);
   };
+
+  
   return (
     <header className="Header">
       {/* Icon     |     Title    |    Buttons */}
@@ -132,7 +135,7 @@ const Header = () => {
           <FormControlLabel
             sx={{ mt: 1 }}
             control={<Switch checked={isAdult} onChange={toggleIsAdult} />}
-            label="Show Adult Rated"
+            label="Show Only Rated R"
           />
         </DialogContent>
         <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
@@ -162,6 +165,22 @@ const Header = () => {
             </Select>
           </InputLabel>
         </FormControl>
+
+        <DialogContent>
+          <FormControlLabel
+            sx={{ mt: 1 }}
+            control={<TextField
+              id="demo-simple-select-standard"
+              value={releaseYear}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setreleaseYear(event.target.value?parseInt(event.target.value,10):undefined)}
+              label="Release Year"
+              type="number"
+            >
+            </TextField>}
+            label=""
+          />
+        </DialogContent>
+
         <DialogActions>
           <Button onClick={handleFilter}>Filter</Button>
           <Button onClick={handleClose}>Cancel</Button>

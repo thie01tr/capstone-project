@@ -23,7 +23,7 @@ const FilterPanel = () => {
       </Grid>
       <Grid container xs={8}>
         <Typography component="div" variant="h6">
-          Show Adult Rated
+          Show Rated R
         </Typography>
       </Grid>
       <Grid container></Grid>
