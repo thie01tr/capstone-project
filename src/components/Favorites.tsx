@@ -10,7 +10,8 @@ const Favorites = () => {
   const { removeWatchList, watchList } = useContext(MoviesContext);
   return (
     <Container>
-      <Box sx={{ bgcolor: "#e8eaebc2" }}>
+      <h2>Favorites</h2>
+      <Box sx={{ bgcolor: "#e8eaebc2", marginTop: "30px" }}>
         <Grid container spacing={2} sx={{ justifyContent: "space-evenly" }}>
           {watchList.map((item) => (
             <MovieListItem key={item.id + Math.random()} movie={item} />

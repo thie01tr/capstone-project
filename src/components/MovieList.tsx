@@ -33,6 +33,8 @@ const MovieList = () => {
     rating,
     topMoviesList,
     setMoviesList,
+    total_pages,
+    setTotalPage,
   } = useContext(MoviesContext);
 
   useEffect(() => {
@@ -73,12 +75,13 @@ const MovieList = () => {
     setPage(value);
     getFilteredMovie(undefined, undefined, isAdult, page).then((res) => {
       setMoviesList(res.results);
+      setTotalPage(res.total_pages);
     });
   };
   return (
     <div className="MovieList">
-      <h2></h2>
-      <Container>
+      <h2>Movies: {ml.length}</h2>
+      <Container sx={{ maxWidth: "100%!important" }}>
         <Box sx={{ bgcolor: "#e8eaebc2", maxWidth: "100%" }}>
           <Grid container spacing={2} sx={{ justifyContent: "space-evenly" }}>
             {ml.map((item) => (
@@ -88,11 +91,15 @@ const MovieList = () => {
           <Grid
             container
             spacing={2}
-            sx={{ display: "flex", justifyContent: "space-evenly" }}
+            sx={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              padding: "30px",
+            }}
           >
             <Stack spacing={2}>
               <Pagination
-                count={10}
+                count={total_pages}
                 page={page}
                 onChange={handlePaginationChange}
                 renderItem={(item) => (

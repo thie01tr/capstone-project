@@ -60,7 +60,7 @@ export const getFilteredMovie = (
   genreId?: number,
   lang?: string,
   isAdult?: boolean,
-  releaseYear?:number,
+  releaseYear?: number,
   page?: number
 ): Promise<MovieResponse> => {
   return axios
@@ -73,7 +73,8 @@ export const getFilteredMovie = (
         page: page,
         certification: isAdult ? "R" : "",
         certification_country: "US",
-        primary_release_year:releaseYear
+        primary_release_year: releaseYear,
+        sort_by: "vote_count.desc",
       },
     })
     .then((res) => res.data);
